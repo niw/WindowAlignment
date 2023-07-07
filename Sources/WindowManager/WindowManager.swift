@@ -6,23 +6,16 @@
 //
 
 import AppKit
-import Extern
 import Foundation
 
-private extension NSDeviceDescriptionKey {
-    static let screenNumber = NSDeviceDescriptionKey("NSScreenNumber")
-}
-
-private extension NSScreen {
-    static func screen(forDisplayIdentifier displayIdentifier: CGDirectDisplayID) -> NSScreen? {
-        for screen in NSScreen.screens {
-            if let screenNumber = screen.deviceDescription[.screenNumber] as? Int {
-                if displayIdentifier == screenNumber {
-                    return screen
-                }
-            }
-        }
-        return nil
+extension NSScreen {
+    public var visibleBounds: CGRect {
+        CGRect(
+            x: visibleFrame.origin.x,
+            y: frame.height - visibleFrame.maxY,
+            width: visibleFrame.width,
+            height: visibleFrame.height
+        )
     }
 }
 
@@ -57,32 +50,17 @@ public enum WindowManager {
         }
     }
 
-    public struct Screen {
-        var screen: NSScreen
-
-        public var visibleFrame: CGRect {
-            CGRect(
-                x: screen.visibleFrame.origin.x,
-                y: screen.frame.height - screen.visibleFrame.maxY,
-                width: screen.visibleFrame.width,
-                height: screen.visibleFrame.height
-            )
-        }
-    }
-
     @MainActor
     public struct Window {
-        var element: AXUIElement
+        // This is public visibility with private name for the extension.
+        public var _element: AXUIElement
 
-        public var screen: Screen? {
-            guard let windowID = element.windowID else {
-                return nil
-            }
-            let displayIdentifier = SkyLightService.main.displayIdentifier(forWindowID: windowID)
-            guard let screen = NSScreen.screen(forDisplayIdentifier: displayIdentifier) else {
-                return nil
-            }
-            return Screen(screen: screen)
+        private var element: AXUIElement {
+            _element
+        }
+
+        init(element: AXUIElement) {
+            _element = element
         }
 
         public var position: CGPoint? {

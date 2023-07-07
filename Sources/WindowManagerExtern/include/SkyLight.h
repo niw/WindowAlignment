@@ -1,6 +1,6 @@
 //
 //  SkyLight.h
-//  Extern
+//  WindowManagerExtern
 //
 //  Created by Yoshimasa Niwa on 7/6/23.
 //

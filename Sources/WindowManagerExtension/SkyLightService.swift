@@ -1,12 +1,12 @@
 //
 //  SkyLightService.swift
-//  WindowManager
+//  WindowManagerExtension
 //
 //  Created by Yoshimasa Niwa on 7/6/23.
 //
 
-import Extern
 import Foundation
+import WindowManagerExtern
 
 @MainActor
 final class SkyLightService {

@@ -6,7 +6,6 @@
 //
 
 import AppKit
-import Extern
 import Foundation
 
 extension AXValue {
@@ -46,12 +45,6 @@ extension AXError: Error {
 
 @MainActor
 extension AXUIElement {
-    var windowID: CGWindowID? {
-        var windowID: CGWindowID = 0
-        _AXUIElementGetWindow(self, &windowID)
-        return windowID
-    }
-
     func attribute<T: CFTypeRef>(for key: String) throws -> T {
         var value: CFTypeRef?
         let error = AXUIElementCopyAttributeValue(

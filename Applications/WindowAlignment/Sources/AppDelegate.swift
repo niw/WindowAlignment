@@ -9,6 +9,7 @@ import AppKit
 import Foundation
 import HotKey
 import WindowManager
+import WindowManagerExtension
 
 @MainActor
 final class AppDelegate: NSObject, ObservableObject {
@@ -50,7 +51,7 @@ extension AppDelegate: NSApplicationDelegate {
                     else {
                         return
                     }
-                    let bounds = screen.visibleFrame
+                    let bounds = screen.visibleBounds
                     var origin = bounds.origin
                     var size = bounds.size
                     let gapWidth = size.width * 0.125
@@ -65,7 +66,7 @@ extension AppDelegate: NSApplicationDelegate {
                     else {
                         return
                     }
-                    let bounds = screen.visibleFrame
+                    let bounds = screen.visibleBounds
                     window.move(to: bounds.origin)
                     window.resize(to: bounds.size)
                 },

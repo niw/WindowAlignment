@@ -4,35 +4,61 @@
 import PackageDescription
 
 let package = Package(
-    name: "WindowManager",
+    name: "WindowAlignment",
     platforms: [
         .macOS(.v13)
     ],
     products: [
+        .library(
+            name: "HotKey",
+            targets: [
+                "HotKey"
+            ]
+        ),
         .library(
             name: "WindowManager",
             targets: [
                 "WindowManager"
             ]
         ),
+        .library(
+            name: "WindowManagerExtension",
+            targets: [
+                "WindowManagerExtension"
+            ]
+        ),
     ],
     targets: [
+        .target(
+            name: "HotKey"
+        ),
         .target(
             name: "WindowManager",
             dependencies: [
                 .target(
-                    name: "Extern"
+                    name: "WindowManagerExtern"
                 )
             ]
         ),
         .target(
-            name: "Extern",
+            name: "WindowManagerExtern",
             linkerSettings: [
                 .unsafeFlags([
                     "-iframework", "/System/Library/PrivateFrameworks",
                     "-framework", "SkyLight"
                 ])
             ]
-        )
+        ),
+        .target(
+            name: "WindowManagerExtension",
+            dependencies: [
+                .target(
+                    name: "WindowManager"
+                ),
+                .target(
+                    name: "WindowManagerExtern"
+                )
+            ]
+        ),
     ]
 )

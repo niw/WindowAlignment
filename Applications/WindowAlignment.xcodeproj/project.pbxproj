@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		543EBC1C2A58CC3B00AD2272 /* WindowAlignment in Resources */ = {isa = PBXBuildFile; fileRef = 543EBC1B2A58CC3B00AD2272 /* WindowAlignment */; };
+		543EBC1E2A58CF0F00AD2272 /* WindowManagerExtension in Frameworks */ = {isa = PBXBuildFile; productRef = 543EBC1D2A58CF0F00AD2272 /* WindowManagerExtension */; };
 		54BF0D182A52573700ACDDD8 /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BF0D172A52573700ACDDD8 /* MainApp.swift */; };
 		54BF0D1C2A52573800ACDDD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54BF0D1B2A52573800ACDDD8 /* Assets.xcassets */; };
 		54BF0D1F2A52573800ACDDD8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54BF0D1E2A52573800ACDDD8 /* Preview Assets.xcassets */; };
@@ -17,14 +19,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		543EBC1B2A58CC3B00AD2272 /* WindowAlignment */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = WindowAlignment; path = ..; sourceTree = "<group>"; };
 		54BF0D142A52573700ACDDD8 /* WindowAlignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WindowAlignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54BF0D172A52573700ACDDD8 /* MainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
 		54BF0D1B2A52573800ACDDD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54BF0D1E2A52573800ACDDD8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		54BF0D2C2A52996200ACDDD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54BF0D2E2A529DAF00ACDDD8 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
-		54CC9B292A57C8CA0046211B /* HotKey */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HotKey; sourceTree = "<group>"; };
-		54CC9B2C2A57CA150046211B /* WindowManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WindowManager; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,8 +33,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54CC9B322A57CF460046211B /* WindowManager in Frameworks */,
 				54CC9B282A57C8410046211B /* HotKey in Frameworks */,
+				54CC9B322A57CF460046211B /* WindowManager in Frameworks */,
+				543EBC1E2A58CF0F00AD2272 /* WindowManagerExtension in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,9 +45,9 @@
 		54BF0D0B2A52573700ACDDD8 = {
 			isa = PBXGroup;
 			children = (
+				54BF0D162A52573700ACDDD8 /* WindowAlignment */,
 				54CC9B2B2A57C8CD0046211B /* Packages */,
 				54BF0D152A52573700ACDDD8 /* Products */,
-				54BF0D162A52573700ACDDD8 /* WindowAlignment */,
 				54CC9B302A57CF460046211B /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -97,8 +99,7 @@
 		54CC9B2B2A57C8CD0046211B /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				54CC9B292A57C8CA0046211B /* HotKey */,
-				54CC9B2C2A57CA150046211B /* WindowManager */,
+				543EBC1B2A58CC3B00AD2272 /* WindowAlignment */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -129,6 +130,7 @@
 			packageProductDependencies = (
 				54CC9B272A57C8410046211B /* HotKey */,
 				54CC9B312A57CF460046211B /* WindowManager */,
+				543EBC1D2A58CF0F00AD2272 /* WindowManagerExtension */,
 			);
 			productName = WindowAlignment;
 			productReference = 54BF0D142A52573700ACDDD8 /* WindowAlignment.app */;
@@ -174,6 +176,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				543EBC1C2A58CC3B00AD2272 /* WindowAlignment in Resources */,
 				54BF0D1F2A52573800ACDDD8 /* Preview Assets.xcassets in Resources */,
 				54BF0D1C2A52573800ACDDD8 /* Assets.xcassets in Resources */,
 			);
@@ -387,6 +390,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		543EBC1D2A58CF0F00AD2272 /* WindowManagerExtension */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WindowManagerExtension;
+		};
 		54CC9B272A57C8410046211B /* HotKey */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = HotKey;

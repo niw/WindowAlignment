@@ -1,6 +1,6 @@
 //
-//  Extern.m
-//  Extern
+//  WindowManagerExtern.m
+//  WindowManagerExtern
 //
 //  Created by Yoshimasa Niwa on 7/6/23.
 //
