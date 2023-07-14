@@ -10,6 +10,7 @@ import Foundation
 
 @MainActor
 final class AppDelegate: NSObject, ObservableObject {
+    @Published
     var service: Service?
 
     var localizedName: String {

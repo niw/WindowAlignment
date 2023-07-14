@@ -79,8 +79,12 @@ private extension HotKey.Modifiers {
     }
 }
 
+enum ServiceError: Error {
+    case failedToAddHotKey(Service.Action)
+}
+
 @MainActor
-final class Service {
+final class Service: ObservableObject {
     struct Action {
         var keyCode: HotKey.KeyCode
         var modifiers: HotKey.Modifiers
@@ -167,7 +171,7 @@ final class Service {
 
     private var hotKeys = [HotKey]()
 
-    private func registerHotKey(for action: Action) {
+    private func addHotKey(for action: Action) throws {
         guard let hotKey = HotKey.add(
             keyCode: action.keyCode,
             modifiers: action.modifiers,
@@ -175,26 +179,58 @@ final class Service {
                 self?.hotKeyDidPress(for: action)
             }
         ) else {
-            return
+            throw ServiceError.failedToAddHotKey(action)
         }
         hotKeys.append(hotKey)
     }
 
+    enum State: String, Equatable {
+        case none
+        case configError
+        case error
+        case waitingProcessTrusted
+        case ready
+    }
+
+    @Published
+    private(set) var state: State = .none
+
     func start() async throws {
-        let configFilePath = (NSHomeDirectory() as NSString).appendingPathComponent(".window_alignment.json")
-        let configFileURL = URL(filePath: configFilePath)
-
-        if !FileManager.default.fileExists(atPath: configFilePath) {
-            try Config.example.save(to: configFileURL)
+        guard state == .none else {
+            return
         }
 
-        let config = try Config.load(from: configFileURL)
+        let actions: [Action]
+        do {
+            let configFilePath = (NSHomeDirectory() as NSString).appendingPathComponent(".window_alignment.json")
+            let configFileURL = URL(filePath: configFilePath)
 
-        try await Accessibility.waitForBeingProcessTrusted()
+            if !FileManager.default.fileExists(atPath: configFilePath) {
+                try Config.example.save(to: configFileURL)
+            }
 
-        for action in config.actions {
-            let action = try Action(config: action)
-            registerHotKey(for: action)
+            let config = try Config.load(from: configFileURL)
+
+            actions = try config.actions.map { action in
+                try Action(config: action)
+            }
+        } catch {
+            state = .configError
+            throw error
         }
+
+        state = .waitingProcessTrusted
+        do {
+            try await Accessibility.waitForBeingProcessTrusted()
+
+            for action in actions {
+                try addHotKey(for: action)
+            }
+        } catch {
+            state = .error
+            throw error
+        }
+
+        state = .ready
     }
 }
