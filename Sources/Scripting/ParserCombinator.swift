@@ -7,7 +7,11 @@
 
 import Foundation
 
-extension String: Error {}
+enum ParserCombinatorError: Error {
+    case noMoreInput
+    case notSatisfied
+    case noParserMatched
+}
 
 typealias Parser<Input, Output> = ([Input]) throws -> (Output, [Input])
 
@@ -33,7 +37,7 @@ func bind<Input, Output, T>(
 func consume<Input>() -> Parser<Input, Input> {
     { input in
         guard let first = input.first else {
-            throw "No more input."
+            throw ParserCombinatorError.noMoreInput
         }
         return (first, Array(input.dropFirst()))
     }
@@ -45,7 +49,7 @@ func satisfy<Input, Output>(
 ) -> Parser<Input, Output> {
     bind(parser) { output in
         guard condition(output) else {
-            throw "Not satisfied."
+            throw ParserCombinatorError.notSatisfied
         }
         return result(output)
     }
@@ -61,7 +65,7 @@ func or<Input, Output>(
             } catch {
             }
         }
-        throw "No parser matched."
+        throw ParserCombinatorError.noParserMatched
     }
 }
 

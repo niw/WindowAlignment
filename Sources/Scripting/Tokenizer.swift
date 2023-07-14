@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum TokenizerError: Error {
+    case notNumberExpression(String)
+    case notFullyTokenize(String)
+}
+
 private extension CharacterSet {
     var parser: Parser<Unicode.Scalar, Unicode.Scalar> {
         satisfy(consume()) { output in
@@ -62,8 +67,9 @@ private let number = or(
     integerPart
 )
 private let numberToken: TokenParser = bind(number) { output in
-    guard let double = Double(String(String.UnicodeScalarView(output))) else {
-        throw "Not number expression"
+    let numberString = String(String.UnicodeScalarView(output))
+    guard let double = Double(numberString) else {
+        throw TokenizerError.notNumberExpression(numberString)
     }
     return result(.number(double))
 }
@@ -119,7 +125,8 @@ private let tokenizer = oneOrMore(or(
 func tokenize(source: String) throws -> [Token] {
     let (output, remaining) = try tokenizer(Array(source.unicodeScalars))
     guard remaining.isEmpty else {
-        throw "Failed to tokenize source"
+        let remainingString = String(String.UnicodeScalarView(remaining))
+        throw TokenizerError.notFullyTokenize(remainingString)
     }
     return output
 }

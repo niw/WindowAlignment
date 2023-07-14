@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum ParserError: Error {
+    case notValueToken(Token)
+    case notFullyParse([Token])
+}
+
 private extension Token {
     var parser: Parser<Token, Token> {
         satisfy(consume()) { result in
@@ -40,7 +45,7 @@ private let valueFactorPart: ExpressionParser = bind(consume()) { valueToken in
     case .number(let number):
         result(.number(number))
     default:
-        throw "Not a name or a number"
+        throw ParserError.notValueToken(valueToken)
     }
 }
 private let factor: ExpressionParser = or(groupFactorPart, valueFactorPart)
@@ -82,7 +87,7 @@ private let expression: ExpressionParser = or(expressionPart, term)
 func parse(tokens: [Token]) throws -> Expression {
     let (output, remaining) = try expression(tokens)
     guard remaining.isEmpty else {
-        throw "Could not parse tokens."
+        throw ParserError.notFullyParse(remaining)
     }
     return output
 }

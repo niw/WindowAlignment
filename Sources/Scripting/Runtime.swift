@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum RuntimeError: Error {
+    case stackUnderflow
+    case noVariableFound(String)
+}
+
 private extension Array {
     mutating func push(_ element: Element) {
         append(element)
@@ -14,7 +19,7 @@ private extension Array {
 
     mutating func pop() throws -> Element {
         guard let element = popLast() else {
-            throw "Stack underflow."
+            throw RuntimeError.stackUnderflow
         }
         return element
     }
@@ -58,7 +63,7 @@ func evaluate(
         switch operand {
         case .variable(let name):
             guard let value = environment(name) else {
-                throw "No variable found."
+                throw RuntimeError.noVariableFound(name)
             }
             return value
         case .value(let value):
