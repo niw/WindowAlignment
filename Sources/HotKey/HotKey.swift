@@ -35,6 +35,10 @@ private struct SerialIdentifier<T: Numeric> {
     }
 }
 
+private struct Weak<T: AnyObject>: Equatable where T: Equatable {
+    weak var object: T?
+}
+
 @MainActor
 public final class HotKey {
     public enum KeyCode {
@@ -94,7 +98,7 @@ public final class HotKey {
     private typealias Identifier = UInt32
 
     private static var sharedEventHandler: CarbonEventHandler?
-    private static var registeredHotKeys = [Identifier: HotKey]() {
+    private static var registeredHotKeys = [Identifier: Weak<HotKey>]() {
         didSet {
             guard oldValue != registeredHotKeys else {
                 return
@@ -156,8 +160,8 @@ public final class HotKey {
                     return
                 }
 
-                let hotKey = registeredHotKeys[hotKeyID.id]
-                guard let hotKey else {
+                let weakHotKey = registeredHotKeys[hotKeyID.id]
+                guard let hotKey = weakHotKey?.object else {
                     return
                 }
 
@@ -185,7 +189,7 @@ public final class HotKey {
         self.hotKeyRef = hotKeyRef
         self.handler = handler
 
-        HotKey.registeredHotKeys[identifier] = self
+        HotKey.registeredHotKeys[identifier] = Weak(object: self)
     }
 
     deinit {
