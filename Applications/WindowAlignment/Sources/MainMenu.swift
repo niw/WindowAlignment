@@ -13,6 +13,10 @@ struct MainMenu: View {
     private var appDelegate: AppDelegate
 
     var body: some View {
+        Button("Reload Configuration") {
+            appDelegate.reload()
+        }
+        .keyboardShortcut("R")
         Button("Quit \(appDelegate.localizedName)") {
             appDelegate.terminate()
         }
