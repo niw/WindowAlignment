@@ -10,12 +10,13 @@ Usage
 -----
 
 Currently the application has no settings user interface.
-Instead, it creates a configuration JSON file at `~/.window_alignment.json`
-and it contains list of hot key (keyboard shortcut) and alignment
-script.
+Instead, it reads a configuration JSON file at `~/.window_alignment.json`
+(If there is no such file, the app creates it with example configurations.)
+The configuration file contains list of hot key (keyboard shortcut) and
+alignment script.
 
-To configure alignment behavior, manually change the configuration JSON
-file and restart the app.
+To configure the behavior, manually change the configuration JSON
+file and select Reload Configuration in the application menu.
 
 
 Configuration
@@ -67,8 +68,8 @@ variables.
 |`screen.height`|Screen height.|
 |`window.x`|Horizontal window position.|
 |`window.y`|Vertical window position.  |
-|`window.width` |window width.|
-|`window.height`|window height.|
+|`window.width` |Window width.|
+|`window.height`|Window height.|
 
 
 Build
@@ -78,8 +79,8 @@ You need to use the latest macOS and Xcode to build the app.
 Open `Applications/WindowAlignment.xcodeproj` and build `WindowAlignment`
 scheme for running.
 
-If you have previous binary, next time when you launch the new binary,
-it will shows an dialog to approve Accessibility access.
+If you have used another binary, next time when you launch the new binary,
+it will shows an dialog to approve Accessibility access again.
 However, often it doesn't work as expected for the new binary.
 Therefore, use following command before launching the new binary to reset
 Accessibility access.
