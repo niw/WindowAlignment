@@ -64,17 +64,18 @@ private extension Config {
 private extension HotKey.Modifiers {
     static func build(from modifiers: [Config.Action.HotKey.Modifiers]) -> Self {
         modifiers.reduce([]) { result, modifier in
-            let modifier: HotKey.Modifiers = switch modifier {
+            let hotKeyModifier: Self
+            switch modifier {
             case .shift:
-                .shift
+                hotKeyModifier = .shift
             case .control:
-                .control
+                hotKeyModifier = .control
             case .option:
-                .option
+                hotKeyModifier = .option
             case .command:
-                .command
+                hotKeyModifier = .command
             }
-            return result.union(modifier)
+            return result.union(hotKeyModifier)
         }
     }
 }
@@ -134,23 +135,23 @@ final class Service: ObservableObject {
         let runtime = Runtime { name in
             switch name {
             case "screen.width":
-                screenBounds.size.width
+                return screenBounds.size.width
             case "screen.height":
-                screenBounds.size.height
+                return screenBounds.size.height
             case "screen.x":
-                screenBounds.origin.x
+                return screenBounds.origin.x
             case "screen.y":
-                screenBounds.origin.y
+                return screenBounds.origin.y
             case "window.width":
-                windowSize?.width ?? 0.0
+                return windowSize?.width ?? 0.0
             case "window.height":
-                windowSize?.height ?? 0.0
+                return windowSize?.height ?? 0.0
             case "window.x":
-                windowPosition?.x ?? 0.0
+                return windowPosition?.x ?? 0.0
             case "window.y":
-                windowPosition?.y ?? 0.0
+                return windowPosition?.y ?? 0.0
             default:
-                nil
+                return nil
             }
         }
 

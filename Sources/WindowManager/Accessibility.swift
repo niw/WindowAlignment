@@ -99,7 +99,7 @@ public enum Accessibility {
                     task = Task.detached {
                         while true {
                             try Task.checkCancellation()
-                            try await SuspendingClock().sleep(for: .seconds(3))
+                            try await SuspendingClock().sleep(until: .now + .seconds(3))
                             if await Self.isProcessTrusted() {
                                 break
                             }

@@ -41,9 +41,9 @@ private let groupFactorPart: ExpressionParser = bind(Token.leftParenthesis.parse
 private let valueFactorPart: ExpressionParser = bind(consume()) { valueToken in
     switch valueToken {
     case .name(let name):
-        result(.symbol(name))
+        return result(.symbol(name))
     case .number(let number):
-        result(.number(number))
+        return result(.number(number))
     default:
         throw ParserError.notValueToken(valueToken)
     }
@@ -55,9 +55,9 @@ private let termPart: ExpressionParser = bind(factor) { left in
         bind(term) { right in
             switch operatorToken {
             case .multiplyOperator:
-                result(Expression.multiply(left, right))
+                return result(Expression.multiply(left, right))
             case .divideOperator:
-                result(Expression.divide(left, right))
+                return result(Expression.divide(left, right))
             default:
                 // Should not reach here.
                 fatalError()
@@ -72,9 +72,9 @@ private let expressionPart: ExpressionParser = bind(term) { left in
         bind(expression) { right in
             switch operatorToken {
             case .plusOperator:
-                result(Expression.add(left, right))
+                return result(Expression.add(left, right))
             case .minusOperator:
-                result(Expression.subtract(left, right))
+                return result(Expression.subtract(left, right))
             default:
                 // Should not reach here.
                 fatalError()
