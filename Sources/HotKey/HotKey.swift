@@ -45,7 +45,7 @@ public final class HotKey {
         case down
         case raw(UInt32)
 
-        var rawValue: UInt32 {
+        public var rawValue: UInt32 {
             switch self {
             case .left:
                 return UInt32(kVK_LeftArrow)
