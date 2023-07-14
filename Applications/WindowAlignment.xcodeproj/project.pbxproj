@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		543BAAE72A60F1E400AEB455 /* Scripting in Frameworks */ = {isa = PBXBuildFile; productRef = 543BAAE62A60F1E400AEB455 /* Scripting */; };
 		543EBC1C2A58CC3B00AD2272 /* WindowAlignment in Resources */ = {isa = PBXBuildFile; fileRef = 543EBC1B2A58CC3B00AD2272 /* WindowAlignment */; };
 		543EBC1E2A58CF0F00AD2272 /* WindowManagerExtension in Frameworks */ = {isa = PBXBuildFile; productRef = 543EBC1D2A58CF0F00AD2272 /* WindowManagerExtension */; };
 		54BF0D182A52573700ACDDD8 /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BF0D172A52573700ACDDD8 /* MainApp.swift */; };
@@ -33,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				543BAAE72A60F1E400AEB455 /* Scripting in Frameworks */,
 				54CC9B282A57C8410046211B /* HotKey in Frameworks */,
 				54CC9B322A57CF460046211B /* WindowManager in Frameworks */,
 				543EBC1E2A58CF0F00AD2272 /* WindowManagerExtension in Frameworks */,
@@ -131,6 +133,7 @@
 				54CC9B272A57C8410046211B /* HotKey */,
 				54CC9B312A57CF460046211B /* WindowManager */,
 				543EBC1D2A58CF0F00AD2272 /* WindowManagerExtension */,
+				543BAAE62A60F1E400AEB455 /* Scripting */,
 			);
 			productName = WindowAlignment;
 			productReference = 54BF0D142A52573700ACDDD8 /* WindowAlignment.app */;
@@ -390,6 +393,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		543BAAE62A60F1E400AEB455 /* Scripting */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scripting;
+		};
 		543EBC1D2A58CF0F00AD2272 /* WindowManagerExtension */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = WindowManagerExtension;

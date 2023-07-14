@@ -27,6 +27,12 @@ let package = Package(
                 "WindowManagerExtension"
             ]
         ),
+        .library(
+            name: "Scripting",
+            targets: [
+                "Scripting"
+            ]
+        )
     ],
     targets: [
         .target(
@@ -60,5 +66,16 @@ let package = Package(
                 )
             ]
         ),
+        .target(
+            name: "Scripting"
+        ),
+        .testTarget(
+            name: "ScriptingTests",
+            dependencies: [
+                .target(
+                    name: "Scripting"
+                )
+            ]
+        )
     ]
 )
