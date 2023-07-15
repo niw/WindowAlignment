@@ -47,12 +47,22 @@ final class AppDelegate: NSObject, ObservableObject {
     private(set) var service: Service?
 
     func reloadService() {
-        let service = Service()
+        let configFilePath = (NSHomeDirectory() as NSString).appendingPathComponent(".window_alignment.json")
+
+        let service = Service(configFilePath: configFilePath)
         self.service = service
 
         Task {
             try await service.start()
         }
+    }
+
+    func openConfigFile() {
+        guard let service = service else {
+            return
+        }
+        let configFileURL = URL(filePath: service.configFilePath)
+        NSWorkspace.shared.open(configFileURL)
     }
 }
 

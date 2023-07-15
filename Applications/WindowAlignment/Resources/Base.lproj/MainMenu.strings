@@ -4,6 +4,9 @@
 /* A main menu item appears when there is an error in the configuration file. */
 "Configuration Error" = "Configuration Error";
 
+/* A main menu item to open the configuration file. */
+"Open Configuration File" = "Open Configuration File";
+
 /* A main menu item to terminate the application. */
 "Quit %@" = "Quit %@";
 

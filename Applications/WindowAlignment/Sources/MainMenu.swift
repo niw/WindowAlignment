@@ -65,6 +65,16 @@ struct MainMenu: View {
         }
         Section {
             Button() {
+                appDelegate.openConfigFile()
+            } label: {
+                Text(
+                    "Open Configuration File",
+                    tableName: "MainMenu",
+                    comment: "A main menu item to open the configuration file."
+                )
+            }
+            .keyboardShortcut("O")
+            Button() {
                 appDelegate.reloadService()
             } label: {
                 Text(

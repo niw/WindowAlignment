@@ -196,6 +196,12 @@ final class Service: ObservableObject {
     @Published
     private(set) var state: State = .none
 
+    let configFilePath: String
+
+    init(configFilePath: String) {
+        self.configFilePath = configFilePath
+    }
+
     func start() async throws {
         guard state == .none else {
             return
@@ -203,7 +209,6 @@ final class Service: ObservableObject {
 
         let actions: [Action]
         do {
-            let configFilePath = (NSHomeDirectory() as NSString).appendingPathComponent(".window_alignment.json")
             let configFileURL = URL(filePath: configFilePath)
 
             if !FileManager.default.fileExists(atPath: configFilePath) {
