@@ -15,11 +15,23 @@ struct ServiceStatusView: View {
     var body: some View {
         switch service.state {
         case .configError:
-            Text("Configuration Error")
+            Text(
+                "Configuration Error",
+                tableName: "MainMenu",
+                comment: "A main menu item appears when there is an error in the configuration file."
+            )
         case .error:
-            Text("Unknown Error")
+            Text(
+                "Unknown Error",
+                tableName: "MainMenu",
+                comment: "A main menu item appears when there is an unknown error."
+            )
         case .waitingProcessTrusted:
-            Text("Waiting Accessibility Access...")
+            Text(
+                "Waiting Accessibility Access…",
+                tableName: "MainMenu",
+                comment: "A main menu item appears when the application is waiting Accessibility Access."
+            )
         case .none, .ready:
             EmptyView()
         }
@@ -31,8 +43,12 @@ struct LoginItemView: View {
     var loginItem: LoginItem
 
     var body: some View {
-       Toggle(isOn: $loginItem.isEnabled) {
-            Text("Start on Login")
+        Toggle(isOn: $loginItem.isEnabled) {
+            Text(
+                "Start on Login",
+                tableName: "MainMenu",
+                comment: "A main menu item to start the application on login."
+            )
         }
     }
 }
@@ -48,8 +64,14 @@ struct MainMenu: View {
             }
         }
         Section {
-            Button("Reload Configuration") {
+            Button() {
                 appDelegate.reloadService()
+            } label: {
+                Text(
+                    "Reload Configuration",
+                    tableName: "MainMenu",
+                    comment: "A main menu item to reload the configuration file."
+                )
             }
             .keyboardShortcut("R")
         }
@@ -57,11 +79,23 @@ struct MainMenu: View {
             if let loginItem = appDelegate.loginItem {
                 LoginItemView(loginItem: loginItem)
             }
-            Button("About \(appDelegate.localizedName)") {
+            Button {
                 appDelegate.presentAboutPanel()
+            } label: {
+                Text(
+                    "About \(appDelegate.localizedName)",
+                    tableName: "MainMenu",
+                    comment: "A main menu item to present a window about the application."
+                )
             }
-            Button("Quit \(appDelegate.localizedName)") {
+            Button() {
                 appDelegate.terminate()
+            } label: {
+                Text(
+                    "Quit \(appDelegate.localizedName)",
+                    tableName: "MainMenu",
+                    comment: "A main menu item to terminate the application."
+                )
             }
             .keyboardShortcut("Q")
         }

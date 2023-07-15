@@ -1,0 +1,21 @@
+﻿/* A main menu item to present a window about the application. */
+"About %@" = "About %@";
+
+/* A main menu item appears when there is an error in the configuration file. */
+"Configuration Error" = "Configuration Error";
+
+/* A main menu item to terminate the application. */
+"Quit %@" = "Quit %@";
+
+/* A main menu item to reload the configuration file. */
+"Reload Configuration" = "Reload Configuration";
+
+/* A main menu item to start the application on login. */
+"Start on Login" = "Start on Login";
+
+/* A main menu item appears when there is an unknown error. */
+"Unknown Error" = "Unknown Error";
+
+/* A main menu item appears when the application is waiting Accessibility Access. */
+"Waiting Accessibility Access…" = "Waiting Accessibility Access…";
+

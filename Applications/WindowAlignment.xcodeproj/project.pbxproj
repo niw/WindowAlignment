@@ -16,12 +16,14 @@
 		54BF0D2F2A529DAF00ACDDD8 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BF0D2E2A529DAF00ACDDD8 /* MainMenu.swift */; };
 		54CC9B282A57C8410046211B /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 54CC9B272A57C8410046211B /* HotKey */; };
 		54CC9B322A57CF460046211B /* WindowManager in Frameworks */ = {isa = PBXBuildFile; productRef = 54CC9B312A57CF460046211B /* WindowManager */; };
+		54EC72AA2A623CD800E2B7E7 /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 54EC72AC2A623CD800E2B7E7 /* MainMenu.strings */; };
 		54F7A5742A6118B2003E35C0 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F7A5732A6118B2003E35C0 /* Config.swift */; };
 		54F7A5762A611F48003E35C0 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F7A5752A611F48003E35C0 /* Service.swift */; };
 		54FE055F2A61F6EF000179BD /* LoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FE055E2A61F6EF000179BD /* LoginItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		540ED5A72A62408300DB8A3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		543EBC1B2A58CC3B00AD2272 /* WindowAlignment */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = WindowAlignment; path = ..; sourceTree = "<group>"; };
 		54BF0D142A52573700ACDDD8 /* WindowAlignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WindowAlignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54BF0D172A52573700ACDDD8 /* MainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
@@ -29,6 +31,7 @@
 		54BF0D1E2A52573800ACDDD8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		54BF0D2C2A52996200ACDDD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54BF0D2E2A529DAF00ACDDD8 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		54EC72AD2A623CDA00E2B7E7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		54F7A5732A6118B2003E35C0 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		54F7A5752A611F48003E35C0 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		54FE055E2A61F6EF000179BD /* LoginItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItem.swift; sourceTree = "<group>"; };
@@ -102,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				54BF0D1B2A52573800ACDDD8 /* Assets.xcassets */,
+				54EC72AC2A623CD800E2B7E7 /* MainMenu.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -169,6 +173,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 54BF0D0B2A52573700ACDDD8;
 			packageReferences = (
@@ -189,6 +194,7 @@
 			files = (
 				54BF0D1F2A52573800ACDDD8 /* Preview Assets.xcassets in Resources */,
 				54BF0D1C2A52573800ACDDD8 /* Assets.xcassets in Resources */,
+				54EC72AA2A623CD800E2B7E7 /* MainMenu.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +215,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		54EC72AC2A623CD800E2B7E7 /* MainMenu.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				54EC72AD2A623CDA00E2B7E7 /* ja */,
+				540ED5A72A62408300DB8A3B /* Base */,
+			);
+			name = MainMenu.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		54BF0D212A52573800ACDDD8 /* Debug */ = {

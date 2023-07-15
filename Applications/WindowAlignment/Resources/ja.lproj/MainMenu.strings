@@ -1,0 +1,20 @@
+/* A main menu item to present a window about the application. */
+"About %@" = "%@について";
+
+/* A main menu item appears when there is an error in the configuration file. */
+"Configuration Error" = "設定ファイルに問題があります";
+
+/* A main menu item to terminate the application. */
+"Quit %@" = "%@を終了";
+
+/* A main menu item to reload the configuration file. */
+"Reload Configuration" = "設定ファイルを再読み込み";
+
+/* A main menu item to start the application on login. */
+"Start on Login" = "ログイン時に起動";
+
+/* A main menu item appears when there is an unknown error. */
+"Unknown Error" = "不明なエラー";
+
+/* A main menu item appears when the application is waiting Accessibility Access. */
+"Waiting Accessibility Access…" = "アクセシビリティアクセスを許可してください…";
