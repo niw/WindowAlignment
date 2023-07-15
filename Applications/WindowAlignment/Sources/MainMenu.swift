@@ -57,6 +57,9 @@ struct MainMenu: View {
             if let loginItem = appDelegate.loginItem {
                 LoginItemView(loginItem: loginItem)
             }
+            Button("About \(appDelegate.localizedName)") {
+                appDelegate.presentAboutPanel()
+            }
             Button("Quit \(appDelegate.localizedName)") {
                 appDelegate.terminate()
             }

@@ -29,6 +29,13 @@ final class AppDelegate: NSObject, ObservableObject {
         return ""
     }
 
+    func presentAboutPanel() {
+        if (NSApp.activationPolicy() == .accessory) {
+            NSApp.activate(ignoringOtherApps: true)
+        }
+        NSApp.orderFrontStandardAboutPanel()
+    }
+
     func terminate() {
         NSApp.terminate(nil)
     }
