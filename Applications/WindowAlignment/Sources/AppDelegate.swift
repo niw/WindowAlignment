@@ -10,9 +10,6 @@ import Foundation
 
 @MainActor
 final class AppDelegate: NSObject, ObservableObject {
-    @Published
-    var service: Service?
-
     var localizedName: String {
         for case let infoDictionary? in [
             Bundle.main.localizedInfoDictionary,
@@ -36,7 +33,13 @@ final class AppDelegate: NSObject, ObservableObject {
         NSApp.terminate(nil)
     }
 
-    func reload() {
+    @Published
+    private(set) var loginItem: LoginItem?
+
+    @Published
+    private(set) var service: Service?
+
+    func reloadService() {
         let service = Service()
         self.service = service
 
@@ -48,6 +51,7 @@ final class AppDelegate: NSObject, ObservableObject {
 
 extension AppDelegate: NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
-        reload()
+        loginItem = LoginItem()
+        reloadService()
     }
 }

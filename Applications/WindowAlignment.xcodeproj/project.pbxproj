@@ -18,6 +18,7 @@
 		54CC9B322A57CF460046211B /* WindowManager in Frameworks */ = {isa = PBXBuildFile; productRef = 54CC9B312A57CF460046211B /* WindowManager */; };
 		54F7A5742A6118B2003E35C0 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F7A5732A6118B2003E35C0 /* Config.swift */; };
 		54F7A5762A611F48003E35C0 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F7A5752A611F48003E35C0 /* Service.swift */; };
+		54FE055F2A61F6EF000179BD /* LoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FE055E2A61F6EF000179BD /* LoginItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		54BF0D2E2A529DAF00ACDDD8 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		54F7A5732A6118B2003E35C0 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		54F7A5752A611F48003E35C0 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		54FE055E2A61F6EF000179BD /* LoginItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			children = (
 				54BF0D2C2A52996200ACDDD8 /* AppDelegate.swift */,
 				54F7A5732A6118B2003E35C0 /* Config.swift */,
+				54FE055E2A61F6EF000179BD /* LoginItem.swift */,
 				54BF0D172A52573700ACDDD8 /* MainApp.swift */,
 				54BF0D2E2A529DAF00ACDDD8 /* MainMenu.swift */,
 				54F7A5752A611F48003E35C0 /* Service.swift */,
@@ -198,6 +201,7 @@
 			files = (
 				54BF0D2D2A52996200ACDDD8 /* AppDelegate.swift in Sources */,
 				54F7A5742A6118B2003E35C0 /* Config.swift in Sources */,
+				54FE055F2A61F6EF000179BD /* LoginItem.swift in Sources */,
 				54F7A5762A611F48003E35C0 /* Service.swift in Sources */,
 				54BF0D2F2A529DAF00ACDDD8 /* MainMenu.swift in Sources */,
 				54BF0D182A52573700ACDDD8 /* MainApp.swift in Sources */,

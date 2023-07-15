@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct ServiceStatus: View {
+struct ServiceStatusView: View {
     @ObservedObject
     var service: Service
 
@@ -26,22 +26,41 @@ struct ServiceStatus: View {
     }
 }
 
+struct LoginItemView: View {
+    @ObservedObject
+    var loginItem: LoginItem
+
+    var body: some View {
+       Toggle(isOn: $loginItem.isEnabled) {
+            Text("Start on Login")
+        }
+    }
+}
+
 struct MainMenu: View {
     @EnvironmentObject
     private var appDelegate: AppDelegate
 
     var body: some View {
         if let service = appDelegate.service {
-            ServiceStatus(service: service)
+            Section {
+                ServiceStatusView(service: service)
+            }
         }
-
-        Button("Reload Configuration") {
-            appDelegate.reload()
+        Section {
+            Button("Reload Configuration") {
+                appDelegate.reloadService()
+            }
+            .keyboardShortcut("R")
         }
-        .keyboardShortcut("R")
-        Button("Quit \(appDelegate.localizedName)") {
-            appDelegate.terminate()
+        Section {
+            if let loginItem = appDelegate.loginItem {
+                LoginItemView(loginItem: loginItem)
+            }
+            Button("Quit \(appDelegate.localizedName)") {
+                appDelegate.terminate()
+            }
+            .keyboardShortcut("Q")
         }
-        .keyboardShortcut("Q")
     }
 }
