@@ -19,6 +19,20 @@ extension NSScreen {
     }
 }
 
+private extension NSWorkspace {
+    var runningApplicationThatOwnsMenuBar: NSRunningApplication? {
+        NSWorkspace.shared.runningApplications.first { runningApplication in
+            runningApplication.ownsMenuBar
+        }
+    }
+}
+
+private extension NSRunningApplication {
+    var accessibilityElement: AXUIElement? {
+        AXUIElementCreateApplication(processIdentifier)
+    }
+}
+
 public enum WindowManager {
     private static var _systemWideElement: AXUIElement?
 
@@ -34,10 +48,15 @@ public enum WindowManager {
     @MainActor
     public struct App {
         public static var focused: App? {
-            guard let element: AXUIElement = try? systemWideElement.attribute(for: kAXFocusedApplicationAttribute) else {
-                return nil
+            if let element: AXUIElement = try? systemWideElement.attribute(for: kAXFocusedApplicationAttribute) {
+                return App(element: element)
             }
-            return App(element: element)
+            // Some application, such as Google Chrome can't find by `kAXFocusedApplicationAttribute`.
+            // Fallback to iterate running applications to find the one owns the menu bar.
+            if let element = NSWorkspace.shared.runningApplicationThatOwnsMenuBar?.accessibilityElement {
+                return App(element: element)
+            }
+            return nil
         }
 
         var element: AXUIElement
