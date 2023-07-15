@@ -7,9 +7,9 @@
 
 import Foundation
 import HotKey
+import Scripting
 import WindowManager
 import WindowManagerExtension
-import Scripting
 
 private extension Config {
     static func load(from configFileURL: URL) throws -> Self {

@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import HotKey
-import Scripting
 
 struct Config: Equatable, Codable {
     struct Action: Equatable, Codable {
