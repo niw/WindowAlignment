@@ -9,6 +9,20 @@ shortcut in the screen.
 Usage
 -----
 
+Download the latest pre-build application binary from [Releases](https://github.com/niw/WindowAlignment/releases)
+page or build it from the source code by following instruction.
+
+Note that the pre-build application binary is only ad-hoc signed.
+Therefore, you need to click Open Anyway to execute it on
+Security & Privacy settings in System Settings.
+
+The application is also need your approval to Accessibility access.
+Follow the instruction appears on the dialog.
+
+
+Configuration
+-------------
+
 Currently the application has no settings user interface.
 Instead, it reads a configuration JSON file at `~/.window_alignment.json`
 (If there is no such file, the app creates it with example configurations.)
@@ -17,10 +31,6 @@ alignment script.
 
 To configure the behavior, manually change the configuration JSON
 file and select Reload Configuration in the application menu.
-
-
-Configuration
--------------
 
 This is an example configuration contains one alignment action that can
 be triggered by `Shift` + `Command` + `Up` which align the active window
