@@ -52,7 +52,7 @@ final class RuntimeTests: XCTestCase {
             "cat": 1.0,
             "kitten": 2.0
         ]
-        let runtime = Runtime() { name in
+        let runtime = Runtime { name in
             variables[name]
         }
 

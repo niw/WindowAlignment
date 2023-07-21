@@ -64,7 +64,7 @@ struct MainMenu: View {
             }
         }
         Section {
-            Button() {
+            Button {
                 appDelegate.openConfigFile()
             } label: {
                 Text(
@@ -74,7 +74,7 @@ struct MainMenu: View {
                 )
             }
             .keyboardShortcut("O")
-            Button() {
+            Button {
                 appDelegate.reloadService()
             } label: {
                 Text(
@@ -98,7 +98,7 @@ struct MainMenu: View {
                     comment: "A main menu item to present a window about the application."
                 )
             }
-            Button() {
+            Button {
                 appDelegate.terminate()
             } label: {
                 Text(
