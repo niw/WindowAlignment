@@ -52,7 +52,7 @@ to the middle of screen.
       },
       // Alignment script to set window position. Optional.
       "move" : {
-        "x" : "screen.width * 0.125",
+        "x" : "screen.x + screen.width * 0.125",
         "y" : "screen.y"
       },
       // Alignment script to set window size. Optional.
