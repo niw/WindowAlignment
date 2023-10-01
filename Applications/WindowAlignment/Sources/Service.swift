@@ -35,7 +35,7 @@ private extension Config {
                     modifiers: [.shift, .command]
                 ),
                 move: .init(
-                    x: "screen.width * 0.125",
+                    x: "screen.x + screen.width * 0.125",
                     y: "screen.y"
                 ),
                 resize: .init(
