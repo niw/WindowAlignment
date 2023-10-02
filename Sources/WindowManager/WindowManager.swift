@@ -9,10 +9,17 @@ import AppKit
 import Foundation
 
 extension NSScreen {
+    // `NSScreen` is using the primary screen left-bottom origin coordinate, Y up.
+    // However, Accessibility APIs for such as `kAXPositionAttribute` is using
+    // the primary screen left-under-the-menu-bar origin coordinate, Y down.
     public var visibleBounds: CGRect {
-        CGRect(
+        // The first screen has the zero `origin`.
+        // Note that `NSScreen.main` is the screen where the key window exists,
+        // not the one has the zero `origin`.
+        let primaryScreenHeightWithoutMenuBar = NSScreen.screens.first?.visibleFrame.maxY ?? 0.0
+        return CGRect(
             x: visibleFrame.origin.x,
-            y: frame.height - visibleFrame.maxY,
+            y: primaryScreenHeightWithoutMenuBar - visibleFrame.maxY,
             width: visibleFrame.width,
             height: visibleFrame.height
         )
