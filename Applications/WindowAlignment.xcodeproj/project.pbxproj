@@ -217,7 +217,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/usr/bin/env bash\n/usr/bin/tccutil reset Accessibility \"${PRODUCT_BUNDLE_IDENTIFIER}\"\n";
+			shellScript = "#!/usr/bin/env bash\n/usr/bin/tccutil reset Accessibility \"${PRODUCT_BUNDLE_IDENTIFIER}\" || true\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
