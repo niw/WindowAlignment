@@ -9,7 +9,7 @@ import AppKit
 import Carbon
 import Foundation
 
-extension FourCharCode: ExpressibleByStringLiteral {
+extension FourCharCode: @retroactive ExpressibleByStringLiteral {
     public init(stringLiteral: StringLiteralType) {
         if let data = stringLiteral.data(using: .macOSRoman) {
             self.init(data.reduce(0) { result, data in
@@ -41,7 +41,7 @@ private struct Weak<T: AnyObject>: Equatable where T: Equatable {
 
 @MainActor
 public final class HotKey {
-    public enum KeyCode {
+    public enum KeyCode: Sendable {
         // TODO: cover all virtual key codes, or find a better solution.
         case left
         case right
@@ -65,7 +65,7 @@ public final class HotKey {
         }
     }
 
-    public struct Modifiers: OptionSet {
+    public struct Modifiers: OptionSet, Sendable {
         public var rawValue: UInt32
 
         public init(rawValue: UInt32) {
@@ -94,7 +94,7 @@ public final class HotKey {
         public static let command = Modifiers(rawValue: UInt32(cmdKey))
     }
 
-    public typealias Handler = () -> Void
+    public typealias Handler = @MainActor () -> Void
     private typealias Identifier = UInt32
 
     private static var sharedEventHandler: CarbonEventHandler?
@@ -192,15 +192,12 @@ public final class HotKey {
         HotKey.registeredHotKeys[identifier] = Weak(object: self)
     }
 
-    deinit {
-        let identifier = identifier
-        let hotKeyRef = hotKeyRef
-
-        Task {
-            await MainActor.run {
-                UnregisterEventHotKey(hotKeyRef)
-                HotKey.registeredHotKeys[identifier] = nil
-            }
+    isolated deinit {
+        // NOTE: Probably Swift bug. Confirmed on Xcode 26.0.1.
+        // Without this `MainActor.assumeIsolated`, Swift compiler crashes.
+        MainActor.assumeIsolated {
+            UnregisterEventHotKey(hotKeyRef)
+            HotKey.registeredHotKeys[identifier] = nil
         }
     }
 }
@@ -208,7 +205,7 @@ public final class HotKey {
 // MARK: - Equatable
 
 extension HotKey: Equatable {
-    public static func == (lhs: HotKey, rhs: HotKey) -> Bool {
+    public nonisolated static func == (lhs: HotKey, rhs: HotKey) -> Bool {
         lhs.identifier == rhs.identifier
     }
 }

@@ -101,8 +101,8 @@ func evaluate(
     return result
 }
 
-public struct Runtime {
-    public struct Code {
+public struct Runtime: Sendable {
+    public struct Code: Sendable {
         var operations: [Operation]
 
         public static func compile(source: String) throws -> Self {
@@ -113,9 +113,9 @@ public struct Runtime {
         }
     }
 
-    public var environment: (String) -> Double?
+    public var environment: @Sendable (String) -> Double?
 
-    public init(environment: @escaping (String) -> Double?) {
+    public init(environment: @escaping @Sendable (String) -> Double?) {
         self.environment = environment
     }
 

@@ -6,6 +6,8 @@
 //
 
 import AppKit
+@preconcurrency
+import ApplicationServices
 import Foundation
 
 extension AXValue {
@@ -40,7 +42,8 @@ extension CGSize {
     }
 }
 
-extension AXError: Error {
+enum AccessibilityError: Error {
+    case axError(AXError)
 }
 
 @MainActor
@@ -53,7 +56,7 @@ extension AXUIElement {
             &value // value
         )
         guard error == .success, let value = value as? T else {
-            throw error
+            throw AccessibilityError.axError(error)
         }
         return value
     }
@@ -61,7 +64,7 @@ extension AXUIElement {
     func setAttribute<T: CFTypeRef>(_ value: T, for key: String) throws {
         let error = AXUIElementSetAttributeValue(self, key as CFString, value)
         if error != .success {
-            throw error
+            throw AccessibilityError.axError(error)
         }
     }
 }

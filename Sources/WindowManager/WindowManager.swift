@@ -41,8 +41,10 @@ private extension NSRunningApplication {
 }
 
 public enum WindowManager {
+    @MainActor
     private static var _systemWideElement: AXUIElement?
 
+    @MainActor
     private static var systemWideElement: AXUIElement {
         if let _systemWideElement {
             return _systemWideElement

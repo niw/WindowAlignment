@@ -10,7 +10,7 @@ import Foundation
 
 @MainActor
 final class CarbonEventHandler {
-    typealias Handler = (EventRef) -> Void
+    typealias Handler = @MainActor (EventRef) -> Void
 
     // Due to class initialization order, these are `var` and forcibly unwrapped.
     private var eventHandlerRef: EventHandlerRef!
@@ -31,8 +31,10 @@ final class CarbonEventHandler {
             GetEventMonitorTarget(), // inTarget
             { (_, eventRef: EventRef?, userData: UnsafeMutableRawPointer?) -> OSStatus in
                 if let eventRef, let userData {
-                    let this = Unmanaged<CarbonEventHandler>.fromOpaque(userData).takeUnretainedValue()
-                    this.handleEvent(eventRef: eventRef)
+                    MainActor.assumeIsolated {
+                        let this = Unmanaged<CarbonEventHandler>.fromOpaque(userData).takeUnretainedValue()
+                        this.handleEvent(eventRef: eventRef)
+                    }
                 }
                 return noErr
             }, // inHandler
@@ -51,14 +53,9 @@ final class CarbonEventHandler {
         self.handler = handler
     }
 
-    deinit {
+    isolated deinit {
         // `eventHandlerRef` here must not be `nil`.
-        let eventHandlerRef = eventHandlerRef
-        Task {
-            await MainActor.run {
-                RemoveEventHandler(eventHandlerRef)
-            }
-        }
+        RemoveEventHandler(eventHandlerRef)
     }
 
     private func handleEvent(eventRef: EventRef) {
