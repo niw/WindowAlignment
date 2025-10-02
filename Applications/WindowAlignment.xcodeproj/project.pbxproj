@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5408A4612E8E1FAA00C81A81 /* WindowAlignment.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 5408A4602E8E1FAA00C81A81 /* WindowAlignment.xctestplan */; };
 		543BAAE72A60F1E400AEB455 /* Scripting in Frameworks */ = {isa = PBXBuildFile; productRef = 543BAAE62A60F1E400AEB455 /* Scripting */; };
 		543EBC1E2A58CF0F00AD2272 /* WindowManagerExtension in Frameworks */ = {isa = PBXBuildFile; productRef = 543EBC1D2A58CF0F00AD2272 /* WindowManagerExtension */; };
 		54CC9B282A57C8410046211B /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 54CC9B272A57C8410046211B /* HotKey */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5408A4602E8E1FAA00C81A81 /* WindowAlignment.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = WindowAlignment.xctestplan; sourceTree = "<group>"; };
 		543EBC1B2A58CC3B00AD2272 /* WindowAlignment */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = WindowAlignment; path = ..; sourceTree = "<group>"; };
 		54BF0D142A52573700ACDDD8 /* WindowAlignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WindowAlignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -41,10 +43,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5408A4622E8E1FB000C81A81 /* Test Plans */ = {
+			isa = PBXGroup;
+			children = (
+				5408A4602E8E1FAA00C81A81 /* WindowAlignment.xctestplan */,
+			);
+			name = "Test Plans";
+			sourceTree = "<group>";
+		};
 		54BF0D0B2A52573700ACDDD8 = {
 			isa = PBXGroup;
 			children = (
 				54271ABB2E0149C000152567 /* WindowAlignment */,
+				5408A4622E8E1FB000C81A81 /* Test Plans */,
 				54CC9B2B2A57C8CD0046211B /* Packages */,
 				54CC9B302A57CF460046211B /* Frameworks */,
 				54BF0D152A52573700ACDDD8 /* Products */,
@@ -145,6 +156,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5408A4612E8E1FAA00C81A81 /* WindowAlignment.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

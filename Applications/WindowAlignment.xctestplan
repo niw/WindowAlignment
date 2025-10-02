@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "A956DAB1-54C0-4C45-99A2-8748059ACE01",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:..",
+        "identifier" : "ScriptingTests",
+        "name" : "ScriptingTests"
+      }
+    }
+  ],
+  "version" : 1
+}
