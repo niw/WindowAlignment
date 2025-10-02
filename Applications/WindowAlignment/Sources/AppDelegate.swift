@@ -7,9 +7,11 @@
 
 import AppKit
 import Foundation
+import Observation
 
 @MainActor
-final class AppDelegate: NSObject, ObservableObject {
+@Observable
+final class AppDelegate: NSObject {
     var localizedName: String {
         for case let infoDictionary? in [
             Bundle.main.localizedInfoDictionary,
@@ -40,10 +42,8 @@ final class AppDelegate: NSObject, ObservableObject {
         NSApp.terminate(nil)
     }
 
-    @Published
     private(set) var loginItem: LoginItem?
 
-    @Published
     private(set) var service: Service?
 
     func reloadService() {

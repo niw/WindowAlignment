@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Observation
 import ServiceManagement
 
 private extension SMAppService {
@@ -15,8 +16,8 @@ private extension SMAppService {
 }
 
 @MainActor
-final class LoginItem: ObservableObject {
-    @Published
+@Observable
+final class LoginItem {
     var isEnabled: Bool {
         didSet {
             guard isEnabled != oldValue else {
@@ -26,6 +27,7 @@ final class LoginItem: ObservableObject {
         }
     }
 
+    @ObservationIgnored
     private var isUpdating: Bool = false
 
     private func update() {

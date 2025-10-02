@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 struct ServiceStatusView: View {
-    @ObservedObject
     var service: Service
 
     var body: some View {
@@ -39,10 +38,12 @@ struct ServiceStatusView: View {
 }
 
 struct LoginItemView: View {
-    @ObservedObject
     var loginItem: LoginItem
 
     var body: some View {
+        @Bindable
+        var loginItem = loginItem
+
         Toggle(isOn: $loginItem.isEnabled) {
             Text(
                 "Start on Login",
@@ -54,8 +55,8 @@ struct LoginItemView: View {
 }
 
 struct MainMenu: View {
-    @EnvironmentObject
-    private var appDelegate: AppDelegate
+    @Environment(AppDelegate.self)
+    private var appDelegate
 
     var body: some View {
         if let service = appDelegate.service {

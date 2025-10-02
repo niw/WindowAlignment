@@ -7,6 +7,7 @@
 
 import Foundation
 import HotKey
+import Observation
 import Scripting
 import WindowManager
 import WindowManagerExtension
@@ -85,7 +86,8 @@ enum ServiceError: Error {
 }
 
 @MainActor
-final class Service: ObservableObject {
+@Observable
+final class Service {
     struct Action {
         var keyCode: HotKey.KeyCode
         var modifiers: HotKey.Modifiers
@@ -170,6 +172,7 @@ final class Service: ObservableObject {
         }
     }
 
+    @ObservationIgnored
     private var hotKeys = [HotKey]()
 
     private func addHotKey(for action: Action) throws {
@@ -193,7 +196,6 @@ final class Service: ObservableObject {
         case ready
     }
 
-    @Published
     private(set) var state: State = .none
 
     let configFilePath: String

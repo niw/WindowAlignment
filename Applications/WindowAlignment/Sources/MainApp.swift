@@ -19,7 +19,7 @@ struct MainApp: App {
                 // `@NSApplicationDelegateAdaptor` supposed to put the object in the Environment
                 // as its documentation said, however, in reality, it only works for `WindowGroup` views.
                 // Therefore we need to manually put it here for `MenuBarExtra` views.
-                .environmentObject(appDelegate)
+                .environment(appDelegate)
         }
     }
 }
