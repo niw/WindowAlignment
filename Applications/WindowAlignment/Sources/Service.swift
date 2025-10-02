@@ -198,10 +198,10 @@ final class Service {
 
     private(set) var state: State = .none
 
-    let configFilePath: String
+    let configFileURL: URL
 
-    init(configFilePath: String) {
-        self.configFilePath = configFilePath
+    init(configFileURL: URL) {
+        self.configFileURL = configFileURL
     }
 
     func start() async throws {
@@ -211,9 +211,9 @@ final class Service {
 
         let actions: [Action]
         do {
-            let configFileURL = URL(filePath: configFilePath)
-
-            if !FileManager.default.fileExists(atPath: configFilePath) {
+            if !FileManager.default.fileExists(atPath: configFileURL.path(percentEncoded: false)) {
+                let configDirectoryURL = configFileURL.deletingLastPathComponent()
+                try FileManager.default.createDirectory(at: configDirectoryURL, withIntermediateDirectories: true)
                 try Config.example.save(to: configFileURL)
             }
 

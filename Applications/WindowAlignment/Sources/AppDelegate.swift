@@ -46,10 +46,20 @@ final class AppDelegate: NSObject {
 
     private(set) var service: Service?
 
-    func reloadService() {
-        let configFilePath = (NSHomeDirectory() as NSString).appendingPathComponent(".window_alignment.json")
+    private var xdgConfigHomeURL: URL {
+        if let xdgConfigHome = ProcessInfo.processInfo.environment["XDG_CONFIG_HOME"],
+           !xdgConfigHome.isEmpty
+        {
+            URL(filePath: xdgConfigHome, directoryHint: .isDirectory)
+        } else {
+            URL(filePath: NSHomeDirectory(), directoryHint: .isDirectory).appending(component: ".config", directoryHint: .isDirectory)
+        }
+    }
 
-        let service = Service(configFilePath: configFilePath)
+    func reloadService() {
+        let configFileURL = xdgConfigHomeURL.appending(component: "window_alignment.json")
+
+        let service = Service(configFileURL: configFileURL)
         self.service = service
 
         Task {
@@ -61,8 +71,7 @@ final class AppDelegate: NSObject {
         guard let service = service else {
             return
         }
-        let configFileURL = URL(filePath: service.configFilePath)
-        NSWorkspace.shared.open(configFileURL)
+        NSWorkspace.shared.open(service.configFileURL)
     }
 }
 

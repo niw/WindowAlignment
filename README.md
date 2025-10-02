@@ -24,7 +24,8 @@ Configuration
 -------------
 
 Currently the application has no settings user interface.
-Instead, it reads a configuration JSON file at `~/.window_alignment.json`
+Instead, it reads a configuration JSON file at `$XDG_CONFIG_HOME/window_alignment.json`,
+where `$XDG_CONFIG_HOME` is default to `$HOME/.config`.
 (If there is no such file, the app creates it with example configurations.)
 The configuration file contains list of hot key (keyboard shortcut) and
 alignment script.
