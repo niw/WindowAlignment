@@ -1,0 +1,65 @@
+{
+  "fill" : {
+    "linear-gradient" : [
+      "display-p3:0.34118,0.77255,0.97647,1.00000",
+      "srgb:0.03529,0.49020,0.97647,1.00000"
+    ]
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "image-name" : "AppIcon-Layer3.svg",
+          "name" : "AppIcon-Layer3"
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    },
+    {
+      "layers" : [
+        {
+          "glass" : false,
+          "image-name" : "AppIcon-Layer2.svg",
+          "name" : "AppIcon-Layer2"
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    },
+    {
+      "layers" : [
+        {
+          "fill" : "none",
+          "image-name" : "AppIcon-Layer1.svg",
+          "name" : "AppIcon-Layer1"
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "squares" : [
+      "macOS"
+    ]
+  }
+}
