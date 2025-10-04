@@ -1,6 +1,8 @@
 WindowAlignment
 ===============
 
+![](https://repository-images.githubusercontent.com/663415304/5df61c54-aac6-4406-bd10-f4f1cdc946f1)
+
 A simple macOS application to align the active window by the keyboard
 shortcut in the screen.
 
